@@ -11,9 +11,6 @@ patterns: [
     include: '#comments'
   }
   {
-    include: '#generics'
-  }
-  {
     include: '#values'
   }
   {

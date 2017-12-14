@@ -119,15 +119,6 @@ describe 'Language Angelscript (HPS - Soma) package', ->
       expect(tokens[0]).toEqual value: 'final',           scopes: [ 'source.hps', 'storage.modifier.angelscript' ]
       expect(tokens[4]).toEqual value: 'cFinalClass',     scopes: [ 'source.hps', 'meta.class.angelscript', 'entity.name.type.class.angelscript' ]
 
-    it 'tokenizes generic objects', ->
-      {tokens} = grammar.tokenizeLine 'array<int> vArray;'
-      expect(tokens[0]).toEqual value: 'array',           scopes: [ 'source.hps', 'storage.type.angelscript' ]
-      expect(tokens[2]).toEqual value: 'int',             scopes: [ 'source.hps', 'meta.generics.angelscript', 'storage.type.angelscript' ]
-      expect(tokens[5]).toEqual value: 'vArray',          scopes: [ 'source.hps', 'entity.name.object.angelscript' ]
-
-      {tokens} = grammar.tokenizeLine 'array<Object@> vArray;'
-      expect(tokens[2]).toEqual value: 'Object@',         scopes: [ 'source.hps', 'meta.generics.angelscript', 'storage.type.other.angelscript' ]
-
     it 'tokenizes include directives', ->
       {tokens} = grammar.tokenizeLine '#include "helpers/helper_player.hps"'
       expect(tokens[1]).toEqual value: 'helpers/helper_player.hps', scopes: [ 'source.hps', 'directive.import.angelscript', 'module.import.name.angelscript' ]

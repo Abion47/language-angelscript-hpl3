@@ -1,10 +1,10 @@
 {
   "name": "language-angelscript-hpl3",
-  "version": "0.1.2",
-  "description": "Scripting & Modding support for AngelScript (HPL3 - SOMA)",
+  "version": "0.0.0",
+  "description": "Language support for AngelScript (HPL3 - SOMA)",
   "private": true,
   "keywords": [],
-  "repository": "https://github.com/Abion47/soma-mod-tools",
+  "repository": "https://github.com/Abion47/language-angelscript-hpl3",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"

@@ -11,6 +11,9 @@ patterns: [
     include: '#comments'
   }
   {
+    include: '#generics'
+  }
+  {
     include: '#values'
   }
   {
@@ -28,10 +31,8 @@ patterns: [
   {
     include: '#keywords'
   }
-  #Pre-processor
   {
-    match: '^\s*\#([a-zA-Z_0-9]*)?'
-    name: 'keyword.control.import.angelscript'
+    include: '#directives'
   }
   {
     include: '#functionCall'
@@ -66,6 +67,22 @@ repository:
         ]
       }
     ]
+
+  generics:
+    {
+      begin: '<'
+      end: '>'
+      name: 'meta.generics.angelscript'
+      patterns: [
+        {
+          include: '#types'
+        }
+        {
+          match: '(?<=<)\\s*([a-zA-Z_][a-zA-Z_0-9]+(?:\\s*@)?)\\s*(?=>)'
+          name: 'storage.type.other.angelscript'
+        }
+      ]
+    }
 
   values:
     patterns: [
@@ -130,7 +147,7 @@ repository:
     patterns: [
       {
         match: '\\b(auto|void|bool|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|string|ref|array|double|float)\\b'
-        name: 'support.type.angelscript'
+        name: 'storage.type.angelscript'
       }
     ]
 
@@ -143,6 +160,10 @@ repository:
       {
         match: '(\\+=|-=|\\*=|/=|%=|\\*\\*=|\\&=|\\|=|\\^=|<<=|>>=|>>>=)'
         name: 'keyword.operator.logical.angelscript'
+      }
+      {
+        match: '(\\&in|\\&out|\\&inout)'
+        name: ''
       }
       {
         match: '[-!&><@*+=/?:]'
@@ -209,6 +230,7 @@ repository:
       {
         begin: '(?!=.*)\\b(?=[a-zA-Z_][a-zA-Z_0-9]*\\s*(?:@|&|@\\+|\\s)\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()(?![^\\{]*;)'
         end: '\\{'
+        name: 'meta.function.angelscript'
         patterns: [
           {
             include: '#comments'
@@ -221,7 +243,7 @@ repository:
           }
           #Non-built in Return type
           {
-            match: '([a-zA-Z_][a-zA-Z_0-9]*)\\s*(@|&|@\\+|\\s)(?=\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()'
+            match: '([a-zA-Z_][a-zA-Z_0-9]+\\s*@)(?=\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()'
             captures:
               '1':
                 name: 'storage.type.other.angelscript'
@@ -237,17 +259,20 @@ repository:
           }
           #Parameters
           {
-            match: '([a-zA-Z_][a-zA-Z_0-9]*)\\s*([@\\+&\\s]+)\\s*(in\\s|out\\s|inout\\s)?\\s*([a-zA-Z_][a-zA-Z_0-9]*)\\s*(?:,|\\))'
+            match: '([a-zA-Z_][a-zA-Z_0-9]*(?:\\s*@)?)\\s*(\\&\\s*in\\b|\\&\\s*out\\b|\\&\\s*inout\\b)?\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*(?:,|\\))'
             captures:
               '1':
                 name: 'storage.type.other.angelscript'
               '2':
                 name: 'keyword.operator.logical.angelscript'
               '3':
-                name: 'storage.modifier.angelscript'
+                name: 'entity.name.object.angelscript'
           }
           {
             include: '#keywords'
+          }
+          {
+            include: '#identifiers'
           }
         ]
       }
@@ -260,6 +285,17 @@ repository:
         captures:
           '2':
             name: 'entity.name.function.angelscript'
+      }
+    ]
+
+  directives:
+    patterns: [
+      {
+        match: '^\\s*#include\\s+\\"([a-zA-Z0-9_/\\\\\\-\\.]*)\\"\\s*$'
+        captures:
+          '1':
+            name: 'module.import.name.angelscript'
+        name: 'directive.import.angelscript'
       }
     ]
 

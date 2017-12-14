@@ -2,306 +2,306 @@ name: 'Angelscript (HPS - Soma)'
 scopeName: 'source.hps'
 comment: 'Angelscript (HPS - Soma) Syntax: version 1.0'
 fileTypes: [
-  'hps'
+	'hps'
 ]
 name: 'Soma - Angelscript'
 
 patterns: [
-  {
-    include: '#comments'
-  }
-  {
-    include: '#values'
-  }
-  {
-    include: '#metadata'
-  }
-  {
-    include: '#classes'
-  }
-  {
-    include: '#functionDef'
-  }
-  {
-    include: '#types'
-  }
-  {
-    include: '#keywords'
-  }
-  {
-    include: '#directives'
-  }
-  {
-    include: '#functionCall'
-  }
-  {
-    include: '#identifiers'
-  }
+	{
+		include: '#comments'
+	}
+	{
+		include: '#values'
+	}
+	{
+		include: '#metadata'
+	}
+	{
+		include: '#classes'
+	}
+	{
+		include: '#functionDef'
+	}
+	{
+		include: '#types'
+	}
+	{
+		include: '#keywords'
+	}
+	{
+		include: '#directives'
+	}
+	{
+		include: '#descriptors'
+	}
+	{
+		include: '#functionCall'
+	}
+	{
+		include: '#identifiers'
+	}
 ]
 
 repository:
-  comments:
-    patterns: [
-      {
-        match: '(//).*$'
-        name: 'comment.line.double-slash.angelscript'
-      }
-      {
-        begin: '/\\*'
-        end: '\\*/'
-        beginCaptures:
-          '0':
-            name: 'punctuation.definition.comment.angelscript'
-        endCaptures:
-          '0':
-            name: 'punctuation.definition.comment.angelscript'
-        name: 'comment.block.angelscript'
-        patterns: [
-          {
-            match: '\\\.'
-            name: 'constant.character.escape.angelscript'
-          }
-        ]
-      }
-    ]
+	comments:
+		patterns: [
+			{
+				match: '(//).*$'
+				name: 'comment.line.double-slash.angelscript'
+			}
+			{
+				begin: '/\\*'
+				end: '\\*/'
+				beginCaptures:
+					'0':
+						name: 'punctuation.definition.comment.angelscript'
+				endCaptures:
+					'0':
+						name: 'punctuation.definition.comment.angelscript'
+				name: 'comment.block.angelscript'
+				patterns: [
+					{
+						match: '\\\.'
+						name: 'constant.character.escape.angelscript'
+					}
+				]
+			}
+		]
 
-  generics:
-    {
-      begin: '<'
-      end: '>'
-      name: 'meta.generics.angelscript'
-      patterns: [
-        {
-          include: '#types'
-        }
-        {
-          match: '(?<=<)\\s*([a-zA-Z_][a-zA-Z_0-9]+(?:\\s*@)?)\\s*(?=>)'
-          name: 'storage.type.other.angelscript'
-        }
-      ]
-    }
+	generics:
+		{
+			begin: '<'
+			end: '>'
+			name: 'meta.generics.angelscript'
+			patterns: [
+				{
+					include: '#types'
+				}
+				{
+					match: '(?<=<)\\s*([a-zA-Z_][a-zA-Z_0-9]+(?:\\s*@)?)\\s*(?=>)'
+					name: 'storage.type.other.angelscript'
+				}
+			]
+		}
 
-  values:
-    patterns: [
-      #Strings
-      {
-        begin: '"""'
-        end: '"""'
-        beginCaptures:
-          '0':
-            name: 'punctuation.definition.string.begin.angelscript'
-        endCaptures:
-          '0':
-            name: 'punctuation.definition.string.end.angelscript'
-        name: 'string.quoted.double.angelscript'
-      }
-      {
-        begin: '"'
-        end: '"'
-        beginCaptures:
-          '0':
-            name: 'punctuation.definition.string.begin.angelscript'
-        endCaptures:
-          '0':
-            name: 'punctuation.definition.string.end.angelscript'
-        name: 'string.quoted.double.angelscript'
-        patterns: [
-          {
-            match: '\\\.'
-            name: 'constant.character.escape.angelscript'
-          }
-        ]
-      }
-      {
-        begin: '\''
-        end: '\''
-        beginCaptures:
-          '0':
-            name: 'punctuation.definition.string.begin.angelscript'
-        endCaptures:
-          '0':
-            name: 'punctuation.definition.string.end.angelscript'
-        name: 'string.quoted.single.angelscript'
-        patterns: [
-          {
-            match: '\\\\.'
-            name: 'constant.character.escape.angelscript'
-          }
-        ]
-      }
-      {
-        match: '\\b(null|true|false)\\b'
-        name: 'constant.language.angelscript'
-      }
-      #Numeric
-      {
-        match: '\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b'
-        name: 'constant.language.angelscript'
-      }
-    ]
+	values:
+		patterns: [
+			#Strings
+			{
+				begin: '"""'
+				end: '"""'
+				beginCaptures:
+					'0':
+						name: 'punctuation.definition.string.begin.angelscript'
+				endCaptures:
+					'0':
+						name: 'punctuation.definition.string.end.angelscript'
+				name: 'string.quoted.double.angelscript'
+			}
+			{
+				begin: '"'
+				end: '"'
+				beginCaptures:
+					'0':
+						name: 'punctuation.definition.string.begin.angelscript'
+				endCaptures:
+					'0':
+						name: 'punctuation.definition.string.end.angelscript'
+				name: 'string.quoted.double.angelscript'
+				patterns: [
+					{
+						match: '\\\.'
+						name: 'constant.character.escape.angelscript'
+					}
+				]
+			}
+			{
+				begin: '\''
+				end: '\''
+				beginCaptures:
+					'0':
+						name: 'punctuation.definition.string.begin.angelscript'
+				endCaptures:
+					'0':
+						name: 'punctuation.definition.string.end.angelscript'
+				name: 'string.quoted.single.angelscript'
+				patterns: [
+					{
+						match: '\\\\.'
+						name: 'constant.character.escape.angelscript'
+					}
+				]
+			}
+			{
+				match: '\\b(null|true|false)\\b'
+				name: 'constant.language.angelscript'
+			}
+			#Numeric
+			{
+				match: '\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b'
+				name: 'constant.language.angelscript'
+			}
+		]
 
-  types:
-    patterns: [
-      {
-        match: '\\b(auto|void|bool|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|string|ref|array|double|float)\\b'
-        name: 'storage.type.angelscript'
-      }
-    ]
+	types:
+		patterns: [
+			{
+				match: '\\b(auto|void|bool|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|string|ref|array|double|float)\\b'
+				name: 'storage.type.angelscript'
+			}
+		]
 
-  keywords:
-    patterns: [
-      {
-        match: '(~|!|\\&\\&|\\|\\||\\^\\^|\\bor\\b|\\band\\b|\\bxor\\b|\\bnot\\b)'
-        name: 'keyword.operator.logical.angelscript'
-      }
-      {
-        match: '(\\+=|-=|\\*=|/=|%=|\\*\\*=|\\&=|\\|=|\\^=|<<=|>>=|>>>=)'
-        name: 'keyword.operator.logical.angelscript'
-      }
-      {
-        match: '(\\&in|\\&out|\\&inout)'
-        name: ''
-      }
-      {
-        match: '[-!&><@*+=/?:]'
-        name: 'keyword.operator.logical.angelscript'
-      }
-      {
-        match: '\\b(for|break|continue|while|do|return|if|else|case|switch|namespace|template)\\b'
-        name: 'keyword.control.angelscript'
-      }
-      {
-        match: '\\b(is|cast)\\b'
-        name: 'keyword.operator.angelscript'
-      }
-      {
-        match: '\\b(get|in|inout|out|override|set|private|public|const|default|final|shared|mixin|typedef|funcdef|typename)\\b'
-        name: 'storage.modifier.angelscript'
-      }
-      {
-        match: '\\b(this|super)\\b'
-        name: 'variable.language.angelscript'
-      }
-      {
-        match: '\\b(import|from)\\b'
-        name: 'keyword.control.import.angelscript'
-      }
-    ]
+	keywords:
+		patterns: [
+			{
+				match: '(~|!|\\&\\&|\\|\\||\\^\\^|\\bor\\b|\\band\\b|\\bxor\\b|\\bnot\\b)'
+				name: 'keyword.operator.logical.angelscript'
+			}
+			{
+				match: '(\\+=|-=|\\*=|/=|%=|\\*\\*=|\\&=|\\|=|\\^=|<<=|>>=|>>>=)'
+				name: 'keyword.operator.logical.angelscript'
+			}
+			{
+				match: '(\\&in|\\&out|\\&inout)'
+				name: ''
+			}
+			{
+				match: '[-!&><@*+=/?:]'
+				name: 'keyword.operator.logical.angelscript'
+			}
+			{
+				match: '\\b(for|break|continue|while|do|return|if|else|case|switch|namespace|template)\\b'
+				name: 'keyword.control.angelscript'
+			}
+			{
+				match: '\\b(is|cast)\\b'
+				name: 'keyword.operator.angelscript'
+			}
+			{
+				match: '\\b(get|in|inout|out|override|set|private|public|const|default|final|shared|mixin|typedef|funcdef|typename)\\b'
+				name: 'storage.modifier.angelscript'
+			}
+			{
+				match: '\\b(this|super)\\b'
+				name: 'variable.language.angelscript'
+			}
+			{
+				match: '\\b(import|from)\\b'
+				name: 'keyword.control.import.angelscript'
+			}
+		]
 
-  metadata:
-    patterns: [
-      {
-        match: '^\\s*\\[(.*)\\]\\s*?'
-        captures:
-          '1':
-            name: 'markup.heading.angelscript'
-        name: 'meta.metadata.angelscript'
-      }
-    ]
+	classes:
+		patterns: [
+			{
+				match: '\\b(class|interface|enum)\\s+([a-zA-Z_0-9]*)(?:\\s*:\\s*([a-zA-Z_0-9]*)(\\s*,\\s*([a-zA-Z_0-9]*))?(\\s*,\\s*([a-zA-Z_0-9]*))?(\\s*,\\s*([a-zA-Z_0-9]*))?(\\s*,\\s*([a-zA-Z_0-9]*))?)?'
+				captures:
+					'1':
+						name: 'storage.type.class.angelscript'
+					'2':
+						name: 'entity.name.type.class.angelscript'
+					'3':
+						name: 'entity.other.inherited-class.angelscript'
+					'5':
+						name: 'entity.other.inherited-class.angelscript'
+					'7':
+						name: 'entity.other.inherited-class.angelscript'
+					'9':
+						name: 'entity.other.inherited-class.angelscript'
+					'11':
+						name: 'entity.other.inherited-class.angelscript'
+				name: 'meta.class.angelscript'
+			}
+		]
 
-  classes:
-    patterns: [
-      {
-        match: '\\b(class|interface|enum)\\s+([a-zA-Z_0-9]*)(?:\\s*:\\s*([a-zA-Z_0-9]*)(\\s*,\\s*([a-zA-Z_0-9]*))?(\\s*,\\s*([a-zA-Z_0-9]*))?(\\s*,\\s*([a-zA-Z_0-9]*))?(\\s*,\\s*([a-zA-Z_0-9]*))?)?'
-        captures:
-          '1':
-            name: 'storage.type.class.angelscript'
-          '2':
-            name: 'entity.name.type.class.angelscript'
-          '3':
-            name: 'entity.other.inherited-class.angelscript'
-          '5':
-            name: 'entity.other.inherited-class.angelscript'
-          '7':
-            name: 'entity.other.inherited-class.angelscript'
-          '9':
-            name: 'entity.other.inherited-class.angelscript'
-          '11':
-            name: 'entity.other.inherited-class.angelscript'
-        name: 'meta.class.angelscript'
-      }
-    ]
+	descriptors:
+		patterns: [
+			{
+				match: '\\[[a-zA-Z_]+\\]'
+				name: 'meta.descriptor.angelscript'
+			}
+		]
 
-  functionDef:
-    patterns: [
-      {
-        begin: '(?!=.*)\\b(?=[a-zA-Z_][a-zA-Z_0-9]*\\s*(?:@|&|@\\+|\\s)\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()(?![^\\{]*;)'
-        end: '\\{'
-        name: 'meta.function.angelscript'
-        patterns: [
-          {
-            include: '#comments'
-          }
-          {
-            include: '#values'
-          }
-          {
-            include: '#types'
-          }
-          #Non-built in Return type
-          {
-            match: '([a-zA-Z_][a-zA-Z_0-9]+\\s*@)(?=\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()'
-            captures:
-              '1':
-                name: 'storage.type.other.angelscript'
-              '2':
-                name: 'keyword.operator.logical.angelscript'
-          }
-          #Function name
-          {
-            match: '([a-zA-Z_][a-zA-Z_0-9]*)\\s*\\('
-            captures:
-              '1':
-                name: 'entity.name.function.angelscript'
-          }
-          #Parameters
-          {
-            match: '([a-zA-Z_][a-zA-Z_0-9]*(?:\\s*@)?)\\s*(\\&\\s*in\\b|\\&\\s*out\\b|\\&\\s*inout\\b)?\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*(?:,|\\))'
-            captures:
-              '1':
-                name: 'storage.type.other.angelscript'
-              '2':
-                name: 'keyword.operator.logical.angelscript'
-              '3':
-                name: 'entity.name.object.angelscript'
-          }
-          {
-            include: '#keywords'
-          }
-          {
-            include: '#identifiers'
-          }
-        ]
-      }
-    ]
+	functionDef:
+		patterns: [
+			{
+				begin: '(?!=.*)\\b(?=[a-zA-Z_][a-zA-Z_0-9]*\\s*(?:@|&|@\\+|\\s)\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()(?![^\\{]*;)'
+				end: '\\{'
+				name: 'meta.function.angelscript'
+				patterns: [
+					{
+						include: '#comments'
+					}
+					{
+						include: '#values'
+					}
+					{
+						include: '#types'
+					}
+					#Non-built in Return type
+					{
+						match: '([a-zA-Z_][a-zA-Z_0-9]+\\s*@)(?=\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*\\()'
+						captures:
+							'1':
+								name: 'storage.type.other.angelscript'
+							'2':
+								name: 'keyword.operator.logical.angelscript'
+					}
+					#Function name
+					{
+						match: '([a-zA-Z_][a-zA-Z_0-9]*)\\s*\\('
+						captures:
+							'1':
+								name: 'entity.name.function.angelscript'
+					}
+					#Parameters
+					{
+						match: '([a-zA-Z_][a-zA-Z_0-9]*(?:\\s*@)?)\\s*(\\&\\s*in\\b|\\&\\s*out\\b|\\&\\s*inout\\b)?\\s+([a-zA-Z_][a-zA-Z_0-9]*)\\s*(?:,|\\))'
+						captures:
+							'1':
+								name: 'storage.type.other.angelscript'
+							'2':
+								name: 'keyword.operator.logical.angelscript'
+							'3':
+								name: 'entity.name.object.angelscript'
+					}
+					{
+						include: '#keywords'
+					}
+					{
+						include: '#identifiers'
+					}
+				]
+			}
+		]
 
-  functionCall:
-    patterns: [
-      {
-        match: '(\\b|\\.)([a-zA-Z_][a-zA-Z_0-9]*)\\b(\\s*\\()'
-        captures:
-          '2':
-            name: 'entity.name.function.angelscript'
-      }
-    ]
+	functionCall:
+		patterns: [
+			{
+				match: '(\\b|\\.)([a-zA-Z_][a-zA-Z_0-9]*)\\b(\\s*\\()'
+				captures:
+					'2':
+						name: 'entity.name.function.angelscript'
+			}
+		]
 
-  directives:
-    patterns: [
-      {
-        match: '^\\s*#include\\s+\\"([a-zA-Z0-9_/\\\\\\-\\.]*)\\"\\s*$'
-        captures:
-          '1':
-            name: 'module.import.name.angelscript'
-        name: 'directive.import.angelscript'
-      }
-    ]
+	directives:
+		patterns: [
+			{
+				match: '^\\s*#include\\s+\\"([a-zA-Z0-9_/\\\\\\-\\.]*)\\"\\s*$'
+				captures:
+					'1':
+						name: 'module.import.name.angelscript'
+				name: 'directive.import.angelscript'
+			}
+		]
 
-  identifiers:
-    patterns: [
-      {
-        match: '(?:\\b|\\.)([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*\\()'
-        captures:
-          '1':
-            name: 'entity.name.object.angelscript'
-      }
-    ]
+	identifiers:
+		patterns: [
+			{
+				match: '(?:\\b|\\.)([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*\\()'
+				captures:
+					'1':
+						name: 'entity.name.object.angelscript'
+			}
+		]

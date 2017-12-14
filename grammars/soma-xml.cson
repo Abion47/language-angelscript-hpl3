@@ -1,0 +1,41 @@
+fileTypes: [
+  'lang'
+  'hpm'
+  'hpm_Area'
+  'hpm_Billboard'
+  'hpm_Compound'
+  'hpm_Decal'
+  'hpm_DetailMeshes'
+  'hpm_Entity'
+  'hpm_ExposureArea'
+  'hpm_FogArea'
+  'hpm_LensFlare'
+  'hpm_Light'
+  'hpm_LightMask'
+  'hpm_ParticleSystem'
+  'hpm_Primitive'
+  'hpm_Sound'
+  'hpm_StaticComboArea'
+  'hpm_StaticObject'
+  'hpm_StaticObjectBatches'
+  'hpm_Terrain'
+  'void'
+  'nodes'
+  'mat'
+  'cmb'
+  'ent'
+  'cfg'
+  'gui'
+  'ps'
+  'fnt'
+]
+
+name: 'Soma - XML'
+
+patterns: [
+  {
+    include: 'text.xml'
+  }
+]
+
+scopeName: 'text.soma.xml'

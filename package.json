@@ -1,6 +1,6 @@
 {
   "name": "language-angelscript-hpl3",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Language support for AngelScript (HPL3 - SOMA)",
   "private": true,
   "keywords": [],
